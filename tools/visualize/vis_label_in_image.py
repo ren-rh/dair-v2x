@@ -44,7 +44,8 @@ def add_arguments(parser):
     parser.add_argument(
         "--path",
         type=str,
-        default="./cooperative-vehicle-infrastructure/vehicle-side",
+        default="./cooperative-vehicle-infrastructure/infrastructure-side",
+        # default="./cooperative-vehicle-infrastructure/vehicle-side",
     )
     parser.add_argument("--id", type=int, default=0)
     parser.add_argument("--output-file", type=str, default="./veh")

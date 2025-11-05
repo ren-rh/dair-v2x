@@ -1,5 +1,5 @@
 dataset_type = 'KittiDataset'
-data_root = '../../../../data/DAIR-V2X/cooperative-vehicle-infrastructure/infrastructure-side/'
+data_root = '/home/yc/dair-v2x/data/DAIR-V2X/cooperative-vehicle-infrastructure/infrastructure-side/'
 class_names = ['Car']
 input_modality = dict(use_lidar=False, use_camera=True)
 point_cloud_range = [0, -39.68, -3, 92.16, 39.68, 1]
@@ -117,7 +117,7 @@ data = dict(
         dataset=dict(
             type=dataset_type,
             data_root=data_root,
-            ann_file=data_root + 'kitti_infos_train.pkl',
+            ann_file=data_root + 'dair_vic_kitti_format_infos_train.pkl',
             split='training',
             pts_prefix='velodyne_reduced',
             pipeline=train_pipeline,
@@ -127,7 +127,7 @@ data = dict(
     val=dict(
         type=dataset_type,
         data_root=data_root,
-        ann_file=data_root + 'kitti_infos_val.pkl',
+        ann_file=data_root + 'dair_vic_kitti_format_infos_train.pkl',
         split='training',
         pts_prefix='velodyne_reduced',
         pipeline=test_pipeline,
@@ -137,7 +137,7 @@ data = dict(
     test=dict(
         type=dataset_type,
         data_root=data_root,
-        ann_file=data_root + 'kitti_infos_val.pkl',
+        ann_file=data_root + 'dair_vic_kitti_format_infos_train.pkl',
         split='training',
         pts_prefix='velodyne_reduced',
         pipeline=test_pipeline,
@@ -154,7 +154,7 @@ optimizer = dict(
         custom_keys={'backbone': dict(lr_mult=0.1, decay_mult=1.0)}))
 optimizer_config = dict(grad_clip=dict(max_norm=35., norm_type=2))
 lr_config = dict(policy='step', step=[8, 11])
-total_epochs = 12
+total_epochs = 24
 
 checkpoint_config = dict(interval=1, max_keep_ckpts=1)
 log_config = dict(

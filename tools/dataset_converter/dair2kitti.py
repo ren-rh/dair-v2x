@@ -1,10 +1,12 @@
 import argparse
 import os
-from tools.dataset_converter.gen_kitti.label_lidarcoord_to_cameracoord import gen_lidar2cam
-from tools.dataset_converter.gen_kitti.label_json2kitti import json2kitti, rewrite_label, label_filter
-from tools.dataset_converter.gen_kitti.gen_calib2kitti import gen_calib2kitti
-from tools.dataset_converter.gen_kitti.gen_ImageSets_from_split_data import gen_ImageSet_from_split_data
-from tools.dataset_converter.utils import pcd2bin
+
+
+from gen_kitti.label_lidarcoord_to_cameracoord import gen_lidar2cam
+from gen_kitti.label_json2kitti import json2kitti, rewrite_label, label_filter
+from gen_kitti.gen_calib2kitti import gen_calib2kitti
+from gen_kitti.gen_ImageSets_from_split_data import gen_ImageSet_from_split_data
+from utils import pcd2bin
 
 parser = argparse.ArgumentParser("Generate the Kitti Format Data")
 parser.add_argument("--source-root", type=str, default="data/single-vehicle-side", help="Raw data root about DAIR-V2X.")
@@ -43,7 +45,7 @@ def mdkir_kitti(target_root):
 
 def rawdata_copy(source_root, target_root):
     os.system("cp -r %s/image %s/training/image_2" % (source_root, target_root))
-    os.system("cp -r %s/velodyne %s/training" % (source_root, target_root))
+    #os.system("cp -r %s/velodyne %s/training" % (source_root, target_root))
 
 
 def kitti_pcd2bin(target_root):
@@ -65,7 +67,7 @@ if __name__ == "__main__":
     print("================ Start to Copy Raw Data ================")
     mdkir_kitti(target_root)
     rawdata_copy(source_root, target_root)
-    kitti_pcd2bin(target_root)
+    #kitti_pcd2bin(target_root)
 
     print("================ Start to Generate Label ================")
     temp_root = args.temp_root

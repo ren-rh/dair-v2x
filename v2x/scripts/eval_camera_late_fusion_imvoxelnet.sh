@@ -27,9 +27,9 @@ python eval.py \
   --input $DATA \
   --output $OUTPUT \
   --model $FUSION_METHOD \
-  --dataset vic-async \
+  --dataset vic-sync \
   --k $DELAY_K \
-  --split val \
+  --split train \
   --split-data-path $SPLIT_DATA_PATH \
   --inf-config-path $INFRA_MODEL_PATH/$INFRA_CONFIG_NAME \
   --inf-model-path $INFRA_MODEL_PATH/$INFRA_MODEL_NAME \
