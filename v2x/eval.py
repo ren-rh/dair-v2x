@@ -24,15 +24,13 @@ from models.model_utils import Channel
 def vis_pred_label_2(pred, label, str, out_dir):
         truth = []
         predict = []        
-        # 创建保存可视化结果的文件夹路径
+
         img_save_floder_path = osp.join(out_dir,'vis_results_dair','BEV_pred_label')
         if not osp.exists(img_save_floder_path):
             os.makedirs(img_save_floder_path)
-        # 清除当前图形    
+   
         plt.cla()
-        # 绘制车辆在全局坐标系中的位置，以蓝色圆点表示
-        # plt.scatter(-veh_c_s_world[1,0],veh_c_s_world[0,0],c='b',marker='o')
-        # 遍历每个标签（真值）并绘制边界框
+
         for i in range(label.shape[0]):
             x3 = label[i,[0,1,2,3,0],0]  
             y3 = label[i,[0,1,2,3,0],1]  
@@ -42,7 +40,7 @@ def vis_pred_label_2(pred, label, str, out_dir):
                 truth.append((-y3[j], x3[j]))
             # plt.scatter(label[i,3,0],label[i,3,1],c='g',marker='o')
             # plt.axis('equal')   
-        # 遍历每个预测结果并绘制边界框    
+  
         for i in range(pred.shape[0]):
             x = pred[i,[0,4,7,3,0],0]  
             y = pred[i,[0,4,7,3,0],1]  
@@ -53,9 +51,7 @@ def vis_pred_label_2(pred, label, str, out_dir):
             # plt.scatter(pred[i,0,0],pred[i,0,1],c='r',marker='*')
         
         plt.axis('equal')
-        # 比例
-        #plt.ylim([-5, 65])
-        #plt.xlim([-40, 30])
+
 
         img_save_path = osp.join(img_save_floder_path,str+'pred_label.png')
         plt.savefig(img_save_path,dpi=300)
